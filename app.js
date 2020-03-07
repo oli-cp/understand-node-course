@@ -9,7 +9,16 @@ app.use("/assets", express.static(__dirname + "/public"));
 
 app.set("view engine", "ejs");
 
-mongoose.connect(config.getDbConnectionString());
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useUnifiedTopology', true);
+mongoose.connect(config.getDbConnectionString())
+    .then(() => {
+        console.log("Connected to database.")
+    })
+    .catch(() => {
+        console.log("Connection to database failed.")
+});
+
 
 
 app.get("/", (req, res, next) => {

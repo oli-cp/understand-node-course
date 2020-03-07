@@ -4,10 +4,10 @@ const Schema = mongoose.Schema;
 
 const todoSchema = new Schema({
 
-    username: String,
-    todo: String,
-    isDone: Boolean,
-    hasAttachment: Boolean
+    username: { type: String, required: true },
+    todo: { type: String, required: true },
+    isDone: { type: Boolean, required: true },
+    hasAttachment: { type: Boolean, required: false }
 
 });
 
