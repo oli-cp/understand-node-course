@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const config = require("./config");
+const setupController = require("./controllers/setupController");
+const apiController = require("./controllers/apiController");
 
 const port = process.env.PORT || 3000;
 
@@ -18,11 +20,14 @@ mongoose.connect(config.getDbConnectionString())
     .catch(() => {
         console.log("Connection to database failed.")
 });
-
+setupController(app);
+apiController(app);
 
 
 app.get("/", (req, res, next) => {
     res.send("Hello");
 });
+
+
 
 app.listen(port);
